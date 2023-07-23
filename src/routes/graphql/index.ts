@@ -1,6 +1,9 @@
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { createGqlResponseSchema, gqlResponseSchema } from './schemas.js';
-import { graphql } from 'graphql';
+import { graphql, parse, validate } from 'graphql';
+import { PrismaClient } from '@prisma/client';
+import depthLimit from 'graphql-depth-limit';
+import { graphqlSchema } from './graphqlSchema.js';
 
 const limit = 5;
 
