@@ -23,6 +23,8 @@ import {
   deletePost,
   deleteProfile,
   deleteUser,
+  subscribeToResolver,
+  unsubscribeFromResolver,
 } from './resolvers.js';
 import { UUIDType } from './types/uuid.js';
 
@@ -119,11 +121,39 @@ export const changeMutationFields = {
   },
 };
 
+export const subMutationFields = {
+  subscribeTo: {
+    type: userType,
+    args: {
+      userId: {
+        type: UUIDType,
+      },
+      authorId: {
+        type: UUIDType,
+      },
+    },
+    resolve: async (_source, args) => await subscribeToResolver(args),
+  },
+  unsubscribeFrom: {
+    type: GraphQLBoolean,
+    args: {
+      userId: {
+        type: UUIDType,
+      },
+      authorId: {
+        type: UUIDType,
+      },
+    },
+    resolve: async (_source, args) => await unsubscribeFromResolver(args),
+  },
+};
+
 export const mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
     ...createMutationFields,
     ...deleteMutationFields,
     ...changeMutationFields,
+    ...subMutationFields,
   }),
 });
