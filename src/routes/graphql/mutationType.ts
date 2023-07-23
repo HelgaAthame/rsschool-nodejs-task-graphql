@@ -5,8 +5,18 @@ import {
   GraphQLString,
 } from 'graphql';
 import { postType, profileType, userType } from './types/types.js';
-import { createPostInput, createProfileInput, createUserInput } from './inputs.js';
 import {
+  changePostInput,
+  changeProfileInput,
+  changeUserInput,
+  createPostInput,
+  createProfileInput,
+  createUserInput,
+} from './inputs.js';
+import {
+  changePost,
+  changeProfile,
+  changeUser,
   createPost,
   createProfile,
   createUser,
@@ -70,10 +80,50 @@ export const deleteMutationFields = {
   },
 };
 
+export const changeMutationFields = {
+  changePost: {
+    type: postType,
+    args: {
+      dto: {
+        type: new GraphQLNonNull(changePostInput),
+      },
+      id: {
+        type: new GraphQLNonNull(UUIDType),
+      },
+    },
+    resolve: async (_source, args) => await changePost(args),
+  },
+  changeUser: {
+    type: userType,
+    args: {
+      dto: {
+        type: new GraphQLNonNull(changeUserInput),
+      },
+      id: {
+        type: new GraphQLNonNull(UUIDType),
+      },
+    },
+    resolve: async (_source, args) => await changeUser(args),
+  },
+  changeProfile: {
+    type: profileType,
+    args: {
+      dto: {
+        type: new GraphQLNonNull(changeProfileInput),
+      },
+      id: {
+        type: new GraphQLNonNull(UUIDType),
+      },
+    },
+    resolve: async (_source, args) => await changeProfile(args),
+  },
+};
+
 export const mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
     ...createMutationFields,
     ...deleteMutationFields,
+    ...changeMutationFields,
   }),
 });
