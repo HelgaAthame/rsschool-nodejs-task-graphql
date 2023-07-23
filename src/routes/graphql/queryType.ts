@@ -1,5 +1,5 @@
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
-/*import {
+import {
   getMemberTypeByIdResolver,
   getMemberTypesResolver,
   getPostByIdResolver,
@@ -8,7 +8,7 @@ import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
   getProfilesResolver,
   getUserByIdResolver,
   getUsersResolver,
-} from './resolvers/rootResolvers.js';*/
+} from './resolvers.js';
 import { UUIDType } from './types/uuid.js';
 import { memberTypeType, postType, profileType, userType } from './types/types.js';
 import MemberTypeId from './types/memberTypeId.js';
