@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import DataLoader from 'dataloader';
+import { User } from './types/userType.js';
 
 export default function loaders(prisma: PrismaClient) {
     return {
