@@ -1,9 +1,9 @@
 import { GraphQLFloat, GraphQLInt, GraphQLList, GraphQLObjectType } from 'graphql';
 
 import { getProfilesByMemberTypeId } from '../actions/profileActions.js';
-import { Context } from '../types/context.js';
+import { Context } from '../types/contextType.js';
 import { MemberTypeId } from './memberTypeId.js';
-import { ProfileType } from './profile.js';
+import { ProfileType } from './profileType.js';
 
 export const MemberType = new GraphQLObjectType({
   name: 'MemberType',
